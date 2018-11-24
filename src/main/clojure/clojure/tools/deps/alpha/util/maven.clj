@@ -102,9 +102,7 @@
 (deftype CustomProvider []
   WagonProvider
   (lookup [_ role-hint]
-    (if (contains? #{"s3" "s3p"} role-hint)
-      (org.springframework.build.aws.maven.PrivateS3Wagon.)
-      (throw (ex-info (str "Unknown wagon provider: " role-hint) {:role-hint role-hint}))))
+    (throw (ex-info (str "Unknown wagon provider: " role-hint) {:role-hint role-hint})))
   (release [_ wagon]))
 
 ;; Delay creation, but then cache Maven ServiceLocator instance
